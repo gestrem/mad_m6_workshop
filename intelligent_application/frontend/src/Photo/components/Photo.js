@@ -594,7 +594,8 @@ const toClotheObject = (products,predicted_image_url) =>{
         "name": "",
         "price": 0.0,
         "quantity": 1,
-        "userId":""
+        "userId":"",
+        "category":""
     }
 
    /*  const clothObj =
@@ -617,7 +618,7 @@ const toClotheObject = (products,predicted_image_url) =>{
     if (o.link==null){
       clothObj.link= predicted_image_url
     }
-    clothObj.class= o.class
+    clothObj.category= o.class
     clothObj.id = i 
     clothObj.userId = pseudo.pseudoId
   
