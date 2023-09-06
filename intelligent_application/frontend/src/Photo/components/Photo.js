@@ -196,7 +196,7 @@ useEffect(() => {
 
     console.log(" PREDICITION ",prediction.detections)
     console.log(" TO CLOTHEOBJECT PREDICTION ",prediction)
-    toClotheObject(prediction)
+    toClotheObject(prediction.detections,prediction.image_url)
     prediction.detections.filter((d) => d.score > minScore).forEach((d) => drawDetection(d,displayBox));
   }
 
@@ -309,8 +309,10 @@ useEffect(() => {
     const displayButtons = predictionPending ? { display: "none" } : {};
     const displayLoading = predictionPending ? {} : { display: "none" };
 
+    //      (!predictionPending && predictionError) || (!inventoryImage)
+
    const displayError =
-      (!predictionPending && predictionError) || (!inventoryImage)
+      (!predictionPending && predictionError)
         ? { width: `${videoWidth}px`, height: `${videoHeight}px` }
         : { display: "none" };
 
@@ -573,10 +575,10 @@ function renderInventoryImage(){
   )
 }
 
-const toClotheObject = (products) =>{
+const toClotheObject = (products,predicted_image_url) =>{
 
   console.log("To Clothe Object ",products)
-
+  console.log("To Clothe Object IMG  ",predicted_image_url)
   products.map(function(o,i) {
  
     const clothObj = {
@@ -607,6 +609,9 @@ const toClotheObject = (products) =>{
     }
     if (o.itemId== null){
       clothObj.itemId=0
+    }
+    if (o.image_url==null){
+      clothObj.image_url= predicted_image_url
     }
     clothObj.class= o.class
     clothObj.id = i 
@@ -808,7 +813,11 @@ const sendToInventory = (index) => {
 
 
   
+/*
+a ajouter au apres snapshot
+ {renderInventoryImage()}
 
+ */
 
          
          
@@ -826,7 +835,7 @@ const sendToInventory = (index) => {
     {definePseudo()}
     {renderCamera()}
     {renderSnapshot()}
-    {renderInventoryImage()}
+   
     {renderQRCode()}
     {renderCatalog()}
     {renderShopWindow()}
