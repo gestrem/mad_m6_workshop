@@ -521,7 +521,7 @@ useEffect(() => {
       setInventoryImage(dataset1["image_url"])
       console.log(" dataset raw ",dataset1["detections"])
 
-//      toClotheObject(dataset1["detections"])
+     toClotheObject(dataset1["detections"])
 
 /* 
       dataset1["detections"].map(function(o,i) {
@@ -559,7 +559,7 @@ useEffect(() => {
   
 
     // clothes set to comment for testing object detection
-    setClothes([clothes[index]])
+    //setClothes([clothes[index]])
     setshopWindow(true)
     setCatalog(false)
  
@@ -594,7 +594,6 @@ const toClotheObject = (products,predicted_image_url) =>{
         "name": "",
         "price": 0.0,
         "quantity": 1,
-        "image_url":"",
         "userId":""
     }
 
@@ -615,8 +614,8 @@ const toClotheObject = (products,predicted_image_url) =>{
     if (o.itemId== null){
       clothObj.itemId=0
     }
-    if (o.image_url==null){
-      clothObj.image_url= predicted_image_url
+    if (o.link==null){
+      clothObj.link= predicted_image_url
     }
     clothObj.class= o.class
     clothObj.id = i 
