@@ -894,7 +894,8 @@ a ajouter au apres snapshot
 
     // route to update to get items by userId
    // http://localhost:8083/products/pseudo.pseudoId
-    axios.get(`http://localhost:8083/products/pseudo.pseudoId`)
+  
+    axios.get(`http://localhost:8083/products/`+ pseudo.pseudoId)
    .then(response => {
 
     let items = response?.data;
@@ -904,7 +905,7 @@ a ajouter au apres snapshot
      
 
     //console.log("photo prediction ",prediction.detections)
-    console.log("photo sent to inventory")
+    console.log("photo sent to inventory 2",response)
    /* return(
       <div>
       {clothes['entries'].map((obj, i) => {
