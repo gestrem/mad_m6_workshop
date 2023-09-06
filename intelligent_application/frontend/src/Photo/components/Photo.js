@@ -521,7 +521,7 @@ useEffect(() => {
       setInventoryImage(dataset1["image_url"])
       console.log(" dataset raw ",dataset1["detections"])
 
-     toClotheObject(dataset1["detections"])
+     //toClotheObject(dataset1["detections"])
 
 /* 
       dataset1["detections"].map(function(o,i) {
@@ -559,7 +559,7 @@ useEffect(() => {
   
 
     // clothes set to comment for testing object detection
-    //setClothes([clothes[index]])
+    setClothes([clothes[index]])
     setshopWindow(true)
     setCatalog(false)
  
