@@ -193,6 +193,9 @@ useEffect(() => {
       return;
     }
     const displayBox = prediction.displayBox;
+
+    console.log(" PREDICITION ",prediction.detections)
+    console.log(" TO CLOTHEOBJECT PREDICTION ",prediction)
     toClotheObject(prediction)
     prediction.detections.filter((d) => d.score > minScore).forEach((d) => drawDetection(d,displayBox));
   }
@@ -571,6 +574,8 @@ function renderInventoryImage(){
 }
 
 const toClotheObject = (products) =>{
+
+  console.log("To Clothe Object ",products)
 
   products.map(function(o,i) {
  
