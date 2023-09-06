@@ -612,14 +612,10 @@ const toClotheObject = (products,predicted_image_url) =>{
     if (o.price== null){
       clothObj.price=0.0
     }
-    if (o.itemId== null){
-      clothObj.itemId=0
-    }
     if (o.link==null){
       clothObj.link= predicted_image_url
     }
     clothObj.category= o.class
-    clothObj.id = i 
     clothObj.userId = pseudo.pseudoId
   
       return(
@@ -718,7 +714,7 @@ const sendToInventory = (index) => {
           id="category"
           aria-label="FormSelect Input"
           value={clothe.class}
-          onChange={e => handleSellItem(e.target.value,index,"class")}
+          onChange={e => handleSellItem(e.target.value,index,"category")}
           isRequired fieldId="simple-form-name-03" >
           {options.map((option, index) => (
             <FormSelectOption
