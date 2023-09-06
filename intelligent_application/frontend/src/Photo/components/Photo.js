@@ -194,9 +194,12 @@ useEffect(() => {
     }
     const displayBox = prediction.displayBox;
 
-    console.log(" PREDICITION ",prediction.detections)
+    console.log(" PREDICITION ",prediction['detections'])
+    console.log(" PREDICITION . ",prediction.detections)
     console.log(" TO CLOTHEOBJECT PREDICTION ",prediction)
-    toClotheObject(prediction.detections,prediction.image_url)
+    toClotheObject(prediction['detections'],prediction.image_url)
+    //display item to edit
+    setshopWindow(true)
     prediction.detections.filter((d) => d.score > minScore).forEach((d) => drawDetection(d,displayBox));
   }
 
