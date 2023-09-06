@@ -197,6 +197,8 @@ useEffect(() => {
     console.log(" PREDICITION ",prediction['detections'])
     console.log(" PREDICITION . ",prediction.detections)
     console.log(" TO CLOTHEOBJECT PREDICTION ",prediction)
+    // empty ItemToSell before a new prediction 
+    setItemToSell([])
     toClotheObject(prediction['detections'],prediction.image_url)
     //display item to edit
     setshopWindow(true)
@@ -519,7 +521,7 @@ useEffect(() => {
       setInventoryImage(dataset1["image_url"])
       console.log(" dataset raw ",dataset1["detections"])
 
-      toClotheObject(dataset1["detections"])
+//      toClotheObject(dataset1["detections"])
 
 /* 
       dataset1["detections"].map(function(o,i) {
@@ -557,7 +559,7 @@ useEffect(() => {
   
 
     // clothes set to comment for testing object detection
-    //setClothes([clothes[index]])
+    setClothes([clothes[index]])
     setshopWindow(true)
     setCatalog(false)
  
@@ -892,7 +894,7 @@ a ajouter au apres snapshot
 
     // route to update to get items by userId
    // http://localhost:8083/products/pseudo.pseudoId
-    axios.get(`http://localhost:8083/products`)
+    axios.get(`http://localhost:8083/products/pseudo.pseudoId`)
    .then(response => {
 
     let items = response?.data;
