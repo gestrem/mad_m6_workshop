@@ -596,7 +596,7 @@ const toClotheObject = (products,predicted_image_url) =>{
         "quantity": 1,
         "pseudoId":"",
         "category":"",
-        "index":null
+        "numero":null
     }
 
    /*  const clothObj =
@@ -621,7 +621,7 @@ const toClotheObject = (products,predicted_image_url) =>{
     }
     clothObj.category= o.class
     clothObj.pseudoId = pseudo.pseudoId
-    clothObj.index = i
+    clothObj.numero = i
   
       return(
       setItemToSell((prevItems)=> [...prevItems,clothObj]) )
@@ -636,7 +636,7 @@ const  removeItemEdited = (index)=> {
  // var newItems = itemToSell.slice(0, index).concat(itemToSell.slice(index+1))
 
  setItemToSell((current) =>
-    current.filter((itemToSell) => itemToSell.index !== index)
+    current.filter((itemToSell) => itemToSell.numero !== index)
   );
   console.log("NEW ITEMS 2 ",itemToSell)
 
