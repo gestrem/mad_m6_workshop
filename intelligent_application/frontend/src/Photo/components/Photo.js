@@ -632,7 +632,7 @@ function removeItemEdited(index){
   var newItems = itemToSell.slice(0, index).concat(itemToSell.slice(index+1))
 
   console.log("NEW ITEMS ",newItems)
-  setItemToSell(newItems)
+  setItemToSell((prevItems)=> [...prevItems,newItems])
 
   console.log("NEW ITEMS 2 ",itemToSell)
 
