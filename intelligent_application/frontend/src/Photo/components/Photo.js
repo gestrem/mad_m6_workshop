@@ -626,18 +626,13 @@ const toClotheObject = (products,predicted_image_url) =>{
   })
 }
 
-function removeItemEdited(index){
+const  removeItemEdited = (index)=> {
 
   console.log("CALL RM ITEM")
+  console.log(" ITEM TO SELL RM ", itemToSell)
   var newItems = itemToSell.slice(0, index).concat(itemToSell.slice(index+1))
 
-  console.log("NEW ITEMS ",newItems)
-  setItemToSell((prevItems)=> [...prevItems,newItems])
-
-  console.log("NEW ITEMS 2 ",itemToSell)
-
-  
-  if (itemToSell.length === 0){
+  if (newItems.length === 0){
     console.log("All items predicted sold" )
     getCatalog()
     setCatalog(true)
@@ -645,7 +640,16 @@ function removeItemEdited(index){
     
   }
 
+  console.log("NEW ITEMS 2 ",itemToSell)
+
+  
+
+
   console.log(" REMOVE SOLD ITEM ", itemToSell)
+  console.log("NEW ITEMS ",newItems)
+
+ return( setItemToSell((prevItems)=> [...prevItems,newItems]) )
+
 
 }
 /* const removeItemEdited = (index) => {
