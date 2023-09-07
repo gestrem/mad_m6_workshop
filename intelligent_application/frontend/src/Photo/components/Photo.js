@@ -595,7 +595,8 @@ const toClotheObject = (products,predicted_image_url) =>{
         "price": 0.0,
         "quantity": 1,
         "pseudoId":"",
-        "category":""
+        "category":"",
+        "index":null
     }
 
    /*  const clothObj =
@@ -616,10 +617,11 @@ const toClotheObject = (products,predicted_image_url) =>{
       clothObj.link= predicted_image_url
     }
     if (o.itemId!=null){
-      clothObj.link= predicted_image_url
+      clothObj.itemId = o.itemId
     }
     clothObj.category= o.class
     clothObj.pseudoId = pseudo.pseudoId
+    clothObj.index = i
   
       return(
       setItemToSell((prevItems)=> [...prevItems,clothObj]) )
@@ -630,26 +632,21 @@ const  removeItemEdited = (index)=> {
 
   console.log("CALL RM ITEM")
   console.log(" ITEM TO SELL RM ", itemToSell)
-  var newItems = itemToSell.slice(0, index).concat(itemToSell.slice(index+1))
+  console.log("item ")
+ // var newItems = itemToSell.slice(0, index).concat(itemToSell.slice(index+1))
 
-  if (newItems.length === 0){
+ setItemToSell((current) =>
+    current.filter((itemToSell) => itemToSell.index !== index)
+  );
+  console.log("NEW ITEMS 2 ",itemToSell)
+
+  if (itemToSell.length === 0){
     console.log("All items predicted sold" )
     getCatalog()
     setCatalog(true)
     setshopWindow(false)
     
   }
-
-  console.log("NEW ITEMS 2 ",itemToSell)
-
-  
-
-
-  console.log(" REMOVE SOLD ITEM ", itemToSell)
-  console.log("NEW ITEMS ",newItems)
-
- return( setItemToSell((prevItems)=> [...prevItems,newItems]) )
-
 
 }
 /* const removeItemEdited = (index) => {
@@ -674,9 +671,11 @@ const sendToInventory = (index) => {
 
   console.log("INDEX INVENTORY ",index)
 
+
   //console.log(" RAW INVENTORY ", itemToSell)
   
   let payload = itemToSell[index]
+  delete payload["index"];
   console.log("SEND TO INVENTORY ",payload)
 
   axios.post('https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products', 
