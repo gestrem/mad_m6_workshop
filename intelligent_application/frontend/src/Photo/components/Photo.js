@@ -594,7 +594,7 @@ const toClotheObject = (products,predicted_image_url) =>{
         "name": "",
         "price": 0.0,
         "quantity": 1,
-        "userId":"",
+        "pseudoId":"",
         "category":""
     }
 
@@ -619,7 +619,7 @@ const toClotheObject = (products,predicted_image_url) =>{
       clothObj.link= predicted_image_url
     }
     clothObj.category= o.class
-    clothObj.userId = pseudo.pseudoId
+    clothObj.pseudoId = pseudo.pseudoId
   
       return(
       setItemToSell((prevItems)=> [...prevItems,clothObj]) )
@@ -928,7 +928,7 @@ a ajouter au apres snapshot
     // route to update to get items by userId
    // https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products/pseudo.pseudoId
   
-    axios.get(`https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products/`+ pseudo.pseudoId)
+    axios.get(`https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products/pseudo`+ pseudo.pseudoId)
    .then(response => {
 
     let items = response?.data;
