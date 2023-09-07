@@ -616,7 +616,7 @@ const toClotheObject = (products,predicted_image_url) =>{
       clothObj.link= predicted_image_url
     }
     if (o.itemId!=null){
-      clothObj.itemId= o.itemId
+      clothObj.link= predicted_image_url
     }
     clothObj.category= o.class
     clothObj.userId = pseudo.pseudoId
@@ -624,6 +624,23 @@ const toClotheObject = (products,predicted_image_url) =>{
       return(
       setItemToSell((prevItems)=> [...prevItems,clothObj]) )
   })
+}
+
+const removeItemEdited = (index) => {
+  return() =>{
+    console.log("CALL RM ITEM")
+    setItemToSell((current)=> current.filter((itemToSell)=> itemToSell[index]))
+    // check itemSell size to render catalog
+    if (itemToSell.length === 0){
+      console.log("All items predicted sold" )
+      getCatalog()
+      setCatalog(true)
+      setshopWindow(false)
+      
+    }
+
+    console.log(" REMOVE SOLD ITEM ", itemToSell)
+  }
 }
 
 const sendToInventory = (index) => {
@@ -642,6 +659,7 @@ const sendToInventory = (index) => {
     {'Content-Type': 'application/json'}
       })
   .then((response) => {
+    removeItemEdited(index)
     console.log("POST ",response);
   }, (error) => {
     console.log("POST ",error);
