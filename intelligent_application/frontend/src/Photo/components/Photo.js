@@ -626,7 +626,23 @@ const toClotheObject = (products,predicted_image_url) =>{
   })
 }
 
-const removeItemEdited = (index) => {
+function removeItemEdited(index){
+
+  console.log("CALL RM ITEM")
+  setItemToSell((current)=> current.filter((itemToSell)=> itemToSell[index]))
+  // check itemSell size to render catalog
+  if (itemToSell.length === 0){
+    console.log("All items predicted sold" )
+    getCatalog()
+    setCatalog(true)
+    setshopWindow(false)
+    
+  }
+
+  console.log(" REMOVE SOLD ITEM ", itemToSell)
+
+}
+/* const removeItemEdited = (index) => {
   return() =>{
     console.log("CALL RM ITEM")
     setItemToSell((current)=> current.filter((itemToSell)=> itemToSell[index]))
@@ -641,7 +657,7 @@ const removeItemEdited = (index) => {
 
     console.log(" REMOVE SOLD ITEM ", itemToSell)
   }
-}
+} */
 
 const sendToInventory = (index) => {
   return() =>{
@@ -660,7 +676,7 @@ const sendToInventory = (index) => {
       })
   .then((response) => {
     removeItemEdited(index)
-    console.log("POST ",response);
+    console.log("POST 2 ",response);
   }, (error) => {
     console.log("POST ",error);
   });
