@@ -755,7 +755,7 @@ const sendToInventory = (index) => {
           <CardBody>
   
         <Form>
-        <FormGroup label="Item Category Predicted by AI">
+        <FormGroup label="Item Category Predicted by AI is {clothe.category}">
         <FormSelect 
           id="category"
           aria-label="FormSelect Input"
@@ -943,11 +943,13 @@ a ajouter au apres snapshot
     let items = response?.data;
 
      setClothes(items)
+     setshopWindow(false)
+     setItemToSell([])
      setCatalog(true)
      
 
     //console.log("photo prediction ",prediction.detections)
-    console.log("photo sent to inventory 2",response)
+    console.log("get catalog",response)
    /* return(
       <div>
       {clothes['entries'].map((obj, i) => {
