@@ -629,7 +629,13 @@ const toClotheObject = (products,predicted_image_url) =>{
 function removeItemEdited(index){
 
   console.log("CALL RM ITEM")
-  setItemToSell(itemToSell.slice(0, index).concat(itemToSell.slice(index+1)))
+  var newItems = itemToSell.slice(0, index).concat(itemToSell.slice(index+1))
+
+  console.log("NEW ITEMS ",newItems)
+  setItemToSell(newItems)
+
+  console.log("NEW ITEMS 2 ",itemToSell)
+
   
   if (itemToSell.length === 0){
     console.log("All items predicted sold" )
@@ -694,8 +700,7 @@ const sendToInventory = (index) => {
   
         const shopWindowDisplay = shopWindow ? {} : { display: "none" };
         const options = [
-          { value: "tshirt" , label : "tshirt" },
-          { value: "chemise" , label : "chemise" },
+          { value: "tshirt, chemise" , label : "tshirt, chemise" },
           { value: "manteau" , label : "manteau" },
           { value: "pull" , label : "pull" },
           { value: "pantalon, bas" , label : "pantalon, bas" },
@@ -750,7 +755,7 @@ const sendToInventory = (index) => {
         <FormSelect 
           id="category"
           aria-label="FormSelect Input"
-          value={clothe.class}
+          value={clothe.category}
           onChange={e => handleSellItem(e.target.value,index,"category")}
           isRequired fieldId="simple-form-name-03" >
           {options.map((option, index) => (
