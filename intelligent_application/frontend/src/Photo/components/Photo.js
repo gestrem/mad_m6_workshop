@@ -628,33 +628,20 @@ const toClotheObject = (products,predicted_image_url) =>{
   })
 }
 
-const removeItemEdited = useCallback((index) => {
-  setItemToSell((current) => [...current,itemToSell.numero !== index])
-}, [itemToSell])
 
-/*
+
+
 const  removeItemEdited = (index)=> {
 
   console.log("CALL RM ITEM")
   console.log(" ITEM TO SELL RM ", itemToSell)
   console.log("item ")
- // var newItems = itemToSell.slice(0, index).concat(itemToSell.slice(index+1))
- if (itemToSell.length === 0){
-  console.log("All items predicted sold" )
-  getCatalog()
-  setCatalog(true)
-  setshopWindow(false)
-  
-}
 return(
  setItemToSell((current) =>
     current.filter((itemToSell) => itemToSell.numero !== index)
   ))
- 
-
-
 }
-*/
+
 /* const removeItemEdited = (index) => {
   return() =>{
     console.log("CALL RM ITEM")
@@ -691,6 +678,13 @@ const sendToInventory = (index) => {
       })
   .then((response) => {
     removeItemEdited(index)
+    console.log(" NEW ITEM TO SELL",itemToSell)
+    if (itemToSell.length === 0){
+      console.log("All items predicted sold" )
+      getCatalog()
+      setCatalog(true)
+      setshopWindow(false) 
+    }
     console.log("POST 2 ",response);
   }, (error) => {
     console.log("POST ",error);
