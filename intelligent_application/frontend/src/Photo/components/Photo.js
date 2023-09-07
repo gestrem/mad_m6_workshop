@@ -629,8 +629,8 @@ const toClotheObject = (products,predicted_image_url) =>{
 function removeItemEdited(index){
 
   console.log("CALL RM ITEM")
-  setItemToSell((current)=> current.filter((itemToSell)=> itemToSell[index]))
-  // check itemSell size to render catalog
+  setItemToSell(itemToSell.slice(0, index).concat(itemToSell.slice(index+1)))
+  
   if (itemToSell.length === 0){
     console.log("All items predicted sold" )
     getCatalog()
@@ -928,7 +928,7 @@ a ajouter au apres snapshot
     // route to update to get items by userId
    // https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products/pseudo.pseudoId
   
-    axios.get(`https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products/pseudo`+ pseudo.pseudoId)
+    axios.get(`https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products/pseudo/`+ pseudo.pseudoId)
    .then(response => {
 
     let items = response?.data;
