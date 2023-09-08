@@ -634,16 +634,22 @@ const toClotheObject = (products,predicted_image_url) =>{
 
 
 
-const  removeItemEdited = (index)=> {
+/* const  removeItemEdited = (index)=> {
 
   console.log("CALL RM ITEM")
   console.log(" ITEM TO SELL RM ", itemToSell)
   console.log("item ")
+  
 return(
  setItemToSell((current) =>
     current.filter((itemToSell) => itemToSell.numero !== index)
   ))
-}
+} */
+
+const  removeItemEdited = useCallback((index) => setItemToSell((current) =>
+current.filter((itemToSell) => itemToSell.numero !== index)
+), []);
+
 
 /* const removeItemEdited = (index) => {
   return() =>{
