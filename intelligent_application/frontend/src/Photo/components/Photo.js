@@ -621,10 +621,18 @@ const toClotheObject = (products,predicted_image_url) =>{
     if (o.itemId!=null){
       clothObj.itemId = o.itemId
     }
-    clothObj.category= o.class
+
+    if (o.class!=null){
+      clothObj.category= o.class
+    }
+    else{
+      clothObj.category= o.category
+    }
+    
     clothObj.pseudoId = pseudo.pseudoId
     clothObj.numero = i
     clothObj.name= o.name
+    clothObj.description=o.description
 
   
       return(
