@@ -85,6 +85,7 @@ function Photo({
   const [cameraEnabled, setCameraEnabled] = useState(null);
   const [clothes, setClothes] = useState([])
   const [video, setVideo] = useState(null);
+  const [buttons,setButtons] = useState(true)
   const [videoWidth, setVideoWidth] = useState(0);
   const [videoHeight, setVideoHeight] = useState(0);
   const [imageCanvas, setImageCanvas] = useState(null);
@@ -202,6 +203,7 @@ useEffect(() => {
     toClotheObject(prediction['detections'],prediction.image_url)
     //display item to edit
     setshopWindow(true)
+    setButtons(true)
     prediction.detections.filter((d) => d.score > minScore).forEach((d) => drawDetection(d,displayBox));
   }
 
@@ -328,7 +330,7 @@ useEffect(() => {
     let displayNoObjects;
 
     // Get Predictions from IA inference
-    console.log(" DISPLAY PENDING ? ",predictionPending)
+    console.log(" DISPLAY LOADING ? ",displayLoading)
     console.log(" DISPLAY RESULT ? ",displayResult)
     console.log(" DISPLAY IMAGE ? ",displayImage)
     console.log(" DISPLAY ERROR ? ",displayError)
@@ -362,25 +364,6 @@ useEffect(() => {
             </div>
           </div>
         </div>
-        <div className="left-button-container button-container" style={displayButtons}>
-        <Button
-            variant="contained"
-            size="large"
-            onClick={getCatalog}
-          >
-            <span className="label-word">Show my dressing</span>
-          </Button>
-        </div>
-        <div className="center-button-container button-container" style={displayButtons}>
-          <Button
-            variant="contained"
-            size="large"
-        
-            onClick={onCameraToggled}
-          >
-            <span className="label-word">Take a new picture ! </span>
-          </Button>
-        </div>
         <div className="right-button-container button-container" style={displayButtons}></div>
       </div>
     );
@@ -399,6 +382,31 @@ useEffect(() => {
     );
   }
 
+  function renderShopwindowPhotoButton(){
+
+    const displayButtons = buttons ? {} : { display: "none" };
+
+      return (
+    <div className="shop-button" style={displayButtons}>
+    <Button
+        variant="contained"
+        size="sm"
+        onClick={getCatalog}
+      >
+        <span className="label-word">Show my dressing</span>
+      </Button>{' '}
+        <Button
+         variant="contained"
+         size="sm"
+    
+        onClick={onCameraToggled}
+      >
+        <span className="label-word">Take a new picture ! </span>
+      </Button>
+    </div>
+)
+
+  }
 
   const handlePseudoCreation = (_event) => {
 
@@ -420,6 +428,7 @@ useEffect(() => {
       setQRCodeUrl(false)
       setPseusoUnicityError(false)
       setPseudoDefined(true)
+    
     }, (error) => {
       console.log("POST ",error);
       setPseusoUnicityError(true)
@@ -564,6 +573,7 @@ console.log("Clothes To Edit ", clothes)
     // clothes set to comment for testing object detection
     //setClothes([clothes[index]])
     toClotheObject([clothes[index]])
+    setButtons(true)
     setImage(null)
     setshopWindow(true)
     setCatalog(false)
@@ -691,7 +701,8 @@ const sendToInventory = (index) => {
     if (itemToSell.length === 1){
       console.log("All items predicted sold" )
       getCatalog()
-      setImage(null) // hide detected image with predictions
+      setImage(null)
+      setInventoryImage("https://www.sifisa.fr/images/0093900001574926432.jpg") // hide detected image with predictions
       setCatalog(true)
       setshopWindow(false) 
   //console.log(" RAW INVENTORY ", itemToSell)
@@ -862,7 +873,7 @@ const sendToInventory = (index) => {
   
   <Card ouiaId="BasicCard">
 
-    <CardTitle>{clothe.category} {clothe.name}</CardTitle>
+    <CardTitle>{clothe.category} - {clothe.name}</CardTitle>
     <CardTitle>{clothe.description}</CardTitle>
     <CardBody>Quantity remaining : <div class="pf-u-font-weight-bold">{clothe.quantity}</div></CardBody>  
     <CardBody>{clothe.price} €</CardBody>
@@ -910,6 +921,7 @@ a ajouter au apres snapshot
     {renderCamera()}
     {renderSnapshot()}
     {renderInventoryImage()}
+    {renderShopwindowPhotoButton()}
     {renderCatalog()}
     {renderShopWindow()}
       
@@ -971,6 +983,8 @@ a ajouter au apres snapshot
      setClothes(items)
      setshopWindow(false)
      setItemToSell([])
+     setImage(false)
+     setInventoryImage("https://www.sifisa.fr/images/0093900001574926432.jpg")
      setCatalog(true)
      
 
