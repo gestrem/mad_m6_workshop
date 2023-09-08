@@ -547,8 +547,7 @@ useEffect(() => {
       )}); */
         
   
-        console.log(" dataset raw 0",dataset1)
-    console.log(" dataset raw ",dataset1["detections"])
+console.log("Clothes To Edit ", clothes)
   
 
    
@@ -560,7 +559,7 @@ useEffect(() => {
 
     // clothes set to comment for testing object detection
     //setClothes([clothes[index]])
-    toClotheObject(clothes[index])
+    toClotheObject([clothes[index]])
     setshopWindow(true)
     setCatalog(false)
  
@@ -616,6 +615,8 @@ const toClotheObject = (products,predicted_image_url) =>{
     }
     if (o.link==null){
       clothObj.link= predicted_image_url
+    }else{
+      clothObj.link= o.link
     }
     if (o.itemId!=null){
       clothObj.itemId = o.itemId
@@ -673,9 +674,14 @@ const sendToInventory = (index) => {
 
   console.log("INDEX INVENTORY ",index)
 
-
+  console.log(" NEW ITEM TO SELL",itemToSell)
+    if (itemToSell.length === 1){
+      console.log("All items predicted sold" )
+      getCatalog()
+      setCatalog(true)
+      setshopWindow(false) 
   //console.log(" RAW INVENTORY ", itemToSell)
-  
+    }
   let payload = itemToSell[index]
   delete payload["index"];
   console.log("SEND TO INVENTORY ",payload)
@@ -687,13 +693,8 @@ const sendToInventory = (index) => {
       })
   .then((response) => {
     removeItemEdited(index)
-    console.log(" NEW ITEM TO SELL",itemToSell)
-    if (itemToSell.length === 0){
-      console.log("All items predicted sold" )
-      getCatalog()
-      setCatalog(true)
-      setshopWindow(false) 
-    }
+  
+    
     console.log("POST 2 ",response);
   }, (error) => {
     console.log("POST ",error);
