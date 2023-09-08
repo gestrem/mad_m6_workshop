@@ -309,8 +309,9 @@ useEffect(() => {
   }
 
   function renderSnapshot() {
-    const displayResult = (image || shopWindow) ? {} : { display: "none" };
+    const displayResult = (image || shopWindow || !inventoryImage) ? {} : { display: "none" };
 
+    console.log(" PENDING ? ",predictionPending)
     const displayButtons = predictionPending ? { display: "none" } : {};
     const displayLoading = predictionPending ? {} : { display: "none" };
 
@@ -853,12 +854,13 @@ const sendToInventory = (index) => {
   
   {clothes.map((clothe,index) =>(
   
+  
   <Card ouiaId="BasicCard">
 
+    <CardTitle>{clothe.category} {clothe.name}</CardTitle>
     <CardTitle>{clothe.description}</CardTitle>
-    <CardBody>{clothe.name}</CardBody> 
     <CardBody>Quantity remaining : <div class="pf-u-font-weight-bold">{clothe.quantity}</div></CardBody>  
-    <CardBody>{clothe.price}</CardBody>
+    <CardBody>{clothe.price} €</CardBody>
     <CardFooter>
     <Button onClick={handleEditItem(index)} variant="secondary" size="small">
       Edit
