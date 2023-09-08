@@ -518,7 +518,7 @@ useEffect(() => {
       image_url: 'https://www.teez.in/cdn/shop/products/Red-Hat-T-Shirt-2_fa4655dc-8606-4d52-be50-787f19bd4310_large.jpg?v=1580794873'
       }
 
-      setInventoryImage(dataset1["image_url"])
+      setInventoryImage(clothes[index].link)
       console.log(" dataset raw ",dataset1["detections"])
 
      //toClotheObject(dataset1["detections"])
@@ -691,6 +691,8 @@ const sendToInventory = (index) => {
   //console.log(" RAW INVENTORY ", itemToSell)
     }
   let payload = itemToSell[index]
+  // for test purpose , image is forced
+  payload.link= "https://www.teez.in/cdn/shop/products/Red-Hat-T-Shirt-2_fa4655dc-8606-4d52-be50-787f19bd4310_large.jpg?v=1580794873"
   delete payload["index"];
   console.log("SEND TO INVENTORY ",payload)
 
@@ -900,8 +902,7 @@ a ajouter au apres snapshot
     {renderQRCode()}
     {renderCamera()}
     {renderSnapshot()}
-   
-   
+    {renderInventoryImage()}
     {renderCatalog()}
     {renderShopWindow()}
       
