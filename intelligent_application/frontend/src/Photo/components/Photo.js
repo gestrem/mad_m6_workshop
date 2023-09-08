@@ -309,9 +309,9 @@ useEffect(() => {
   }
 
   function renderSnapshot() {
-    const displayResult = (image || shopWindow || !inventoryImage) ? {} : { display: "none" };
+    const displayResult = image ? {} : { display: "none" };
 
-    console.log(" PENDING ? ",predictionPending)
+
     const displayButtons = predictionPending ? { display: "none" } : {};
     const displayLoading = predictionPending ? {} : { display: "none" };
 
@@ -328,7 +328,10 @@ useEffect(() => {
     let displayNoObjects;
 
     // Get Predictions from IA inference
-
+    console.log(" DISPLAY PENDING ? ",predictionPending)
+    console.log(" DISPLAY RESULT ? ",displayResult)
+    console.log(" DISPLAY IMAGE ? ",displayImage)
+    console.log(" DISPLAY ERROR ? ",displayError)
     
 
     displayNoObjects = { display: "none" }; // Never show no objects
@@ -561,6 +564,7 @@ console.log("Clothes To Edit ", clothes)
     // clothes set to comment for testing object detection
     //setClothes([clothes[index]])
     toClotheObject([clothes[index]])
+    setImage(null)
     setshopWindow(true)
     setCatalog(false)
  
@@ -687,6 +691,7 @@ const sendToInventory = (index) => {
     if (itemToSell.length === 1){
       console.log("All items predicted sold" )
       getCatalog()
+      setImage(null) // hide detected image with predictions
       setCatalog(true)
       setshopWindow(false) 
   //console.log(" RAW INVENTORY ", itemToSell)
