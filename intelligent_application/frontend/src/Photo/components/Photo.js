@@ -121,14 +121,14 @@ useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prediction]);
 
-/*   useEffect(() => {
+ useEffect(() => {
     const currentAddress = window.location.href;
     QRCode.toDataURL(currentAddress, function(err, url) {
       if (err) throw err;
       setQRCodeUrl(url);
     });
   }, []);
- */
+ 
   const videoRef = useCallback(
     (node) => {
       setVideo(node);
@@ -559,7 +559,8 @@ useEffect(() => {
   
 
     // clothes set to comment for testing object detection
-    setClothes([clothes[index]])
+    //setClothes([clothes[index]])
+    toClotheObject(clothes[index])
     setshopWindow(true)
     setCatalog(false)
  
@@ -610,8 +611,8 @@ const toClotheObject = (products,predicted_image_url) =>{
     } */
     // set price to 0 when it is predicted
 
-    if (o.price== null){
-      clothObj.price=0.0
+    if (o.price!= null){
+      clothObj.price=o.price
     }
     if (o.link==null){
       clothObj.link= predicted_image_url
@@ -622,6 +623,8 @@ const toClotheObject = (products,predicted_image_url) =>{
     clothObj.category= o.class
     clothObj.pseudoId = pseudo.pseudoId
     clothObj.numero = i
+    clothObj.name= o.name
+
   
       return(
       setItemToSell((prevItems)=> [...prevItems,clothObj]) )
@@ -879,10 +882,11 @@ a ajouter au apres snapshot
     </div>
 
     {definePseudo()}
+    {renderQRCode()}
     {renderCamera()}
     {renderSnapshot()}
    
-    {renderQRCode()}
+   
     {renderCatalog()}
     {renderShopWindow()}
       
