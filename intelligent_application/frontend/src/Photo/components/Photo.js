@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, } from "react";
 import { connect } from "react-redux";
 //import { Button } from "@mui/material";
 import axios from "axios";
-import constants from "../../../../utils/constants";
+import constants from "../../constants";
 import { resetSearch, searchPhoto } from "../actions";
 import {
   Form,
