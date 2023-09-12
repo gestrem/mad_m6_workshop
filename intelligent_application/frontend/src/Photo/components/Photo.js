@@ -683,7 +683,7 @@ const sendToInventory = (index) => {
   console.log(" NEW ITEM TO SELL",itemToSell)
     if (itemToSell.length === 1){
       console.log("All items predicted sold" )
-      getCatalog()
+    
       setImage(null)
       setInventoryImage("https://www.sifisa.fr/images/0093900001574926432.jpg") // hide detected image with predictions
       setCatalog(true)
@@ -704,7 +704,7 @@ const sendToInventory = (index) => {
   .then((response) => {
     removeItemEdited(index)
   
-    
+    getCatalog()
     console.log("POST 2 ",response);
   }, (error) => {
     console.log("POST ",error);
