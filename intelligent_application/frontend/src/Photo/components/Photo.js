@@ -85,7 +85,7 @@ function Photo({
   const [cameraEnabled, setCameraEnabled] = useState(null);
   const [clothes, setClothes] = useState([])
   const [video, setVideo] = useState(null);
-  const [buttons,setButtons] = useState(true)
+  const [buttons,setButtons] = useState(false)
   const [videoWidth, setVideoWidth] = useState(0);
   const [videoHeight, setVideoHeight] = useState(0);
   const [imageCanvas, setImageCanvas] = useState(null);
@@ -428,6 +428,7 @@ useEffect(() => {
       setQRCodeUrl(false)
       setPseusoUnicityError(false)
       setPseudoDefined(true)
+      setButtons(true)
     
     }, (error) => {
       console.log("POST ",error);
@@ -983,26 +984,14 @@ a ajouter au apres snapshot
      setClothes(items)
      setshopWindow(false)
      setItemToSell([])
-     setImage(false)
+     setImage(null)
      setInventoryImage("https://www.sifisa.fr/images/0093900001574926432.jpg")
      setCatalog(true)
      
 
     //console.log("photo prediction ",prediction.detections)
     console.log("get catalog",response)
-   /* return(
-      <div>
-      {clothes['entries'].map((obj, i) => {
-        return (
-          <div key={i}>
-            <p>{obj?.API}</p>
-          </div>
-        );
-      })}
-    </div>
-  );
-    */
-   
+
   })
   .catch(error=>{
     console.error("error api",error)
