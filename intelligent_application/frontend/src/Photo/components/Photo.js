@@ -411,7 +411,7 @@ useEffect(() => {
   const handlePseudoCreation = (_event) => {
 
     
-      axios.post('https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/pseudos', 
+      axios.post('https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/pseudos', 
       {"pseudoName" : pseudo.pseudoName}
     ,{headers:
       {'Content-Type': 'application/json'}
@@ -713,7 +713,7 @@ const sendToInventory = (index) => {
   delete payload["index"];
   console.log("SEND TO INVENTORY ",payload)
 
-  axios.post('https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products', 
+  axios.post('https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products', 
     payload
   ,{headers:
     {'Content-Type': 'application/json'}
@@ -935,7 +935,7 @@ a ajouter au apres snapshot
   function GetObjectPrediction(){
   
    
-    axios.get(`https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products`)
+    axios.get(`https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products`)
 
    .then(response => {
 
@@ -973,9 +973,9 @@ a ajouter au apres snapshot
   function getCatalog(){
 
     // route to update to get items by userId
-   // https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products/pseudo.pseudoId
+   // https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products/pseudo.pseudoId
   
-    axios.get(`https://inventory-ordermgmt.apps.cluster-pr9p8.pr9p8.sandbox499.opentlc.com/products/pseudo/`+ pseudo.pseudoId)
+    axios.get(`https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products/pseudo/`+ pseudo.pseudoId)
    .then(response => {
 
     let items = response?.data;
