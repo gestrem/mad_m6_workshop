@@ -993,7 +993,7 @@ a ajouter au apres snapshot
      setshopWindow(false)
      setItemToSell([])
      setImage(null)
-     cameraEnabled(false)
+     setCameraEnabled(false)
      setInventoryImage("https://www.sifisa.fr/images/0093900001574926432.jpg")
      setCatalog(true)
      
