@@ -156,7 +156,11 @@ useEffect(() => {
   }
 
   function onCameraToggled() {
+    console.log("Take a new photo")
     reset();
+    setshopWindow(false)
+    setInventoryImage(false)
+    setCatalog(false)
     enableCamera();
   }
 
