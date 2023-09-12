@@ -1,9 +1,11 @@
 import "@patternfly/react-core/dist/styles/base.css";
 import React, { useState, useEffect, useCallback, } from "react";
 import { connect } from "react-redux";
+import env from "env-var";
+
+
 //import { Button } from "@mui/material";
 import axios from "axios";
-import {INVENTORY_URL} from "../../constants";
 import { resetSearch, searchPhoto } from "../actions";
 import {
   Form,
@@ -69,6 +71,8 @@ import QRCode from 'qrcode';
 
 import "./Photo.scss";
 import "./fonts.css"
+const INVENTORY_URL =
+  env.get("INVENTORY_URL")
 
 function Photo({
   reset,
