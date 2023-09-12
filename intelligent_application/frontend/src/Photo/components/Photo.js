@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, } from "react";
 import { connect } from "react-redux";
 //import { Button } from "@mui/material";
 import axios from "axios";
-import constants from "../../constants";
+import {INVENTORY_URL} from "../../constants";
 import { resetSearch, searchPhoto } from "../actions";
 import {
   Form,
@@ -69,7 +69,6 @@ import QRCode from 'qrcode';
 
 import "./Photo.scss";
 import "./fonts.css"
-const inventoryEndpoint = constants.INVENTORY_URL
 
 function Photo({
   reset,
@@ -423,7 +422,7 @@ useEffect(() => {
   const handlePseudoCreation = (_event) => {
 
     
-      axios.post(inventoryEndpoint+'/pseudos', 
+      axios.post(INVENTORY_URL+'/pseudos', 
       {"pseudoName" : pseudo.pseudoName}
     ,{headers:
       {'Content-Type': 'application/json'}
@@ -700,7 +699,7 @@ const sendToInventory = (index) => {
   delete payload["index"];
   console.log("SEND TO INVENTORY ",payload)
 
-  axios.post(inventoryEndpoint+'/products', 
+  axios.post(INVENTORY_URL+'/products', 
     payload
   ,{headers:
     {'Content-Type': 'application/json'}
@@ -928,8 +927,8 @@ a ajouter au apres snapshot
 
     // route to update to get items by userId
    // https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products/pseudo.pseudoId
-  console.log("INVENTORY URL : ",inventoryEndpoint)
-    axios.get(inventoryEndpoint+'/products/pseudo/'+ pseudo.pseudoId)
+  console.log("INVENTORY URL : ",INVENTORY_URL)
+    axios.get(INVENTORY_URL+'/products/pseudo/'+ pseudo.pseudoId)
    .then(response => {
 
     let items = response?.data;
