@@ -11,17 +11,11 @@ const DISPLAY_BOX = env
   .default("true")
   .asBool();
 
-const INVENTORY_URL =env
-  .get("INVENTORY_URL")
-  .default("http://inventory:8080")
-  .asBool();
-
 const constants = {
   PORT,
   IP,
   LOG_LEVEL,
   OBJECT_DETECTION_URL,
-  INVENTORY_URL,
   DISPLAY_BOX,
 };
 
