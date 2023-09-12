@@ -69,6 +69,8 @@ import QRCode from 'qrcode';
 
 import "./Photo.scss";
 import "./fonts.css"
+const inventoryEndpoint = constants.INVENTORY_URL
+
 function Photo({
   reset,
   searchPhoto,
@@ -80,7 +82,6 @@ function Photo({
   labelSettings,
   status,
 }) {
-  const inventoryEndpoint = constants.INVENTORY_URL
 
   const [image, setImage] = useState(null);
   const [catalog, setCatalog] = useState(false)
@@ -927,7 +928,7 @@ a ajouter au apres snapshot
 
     // route to update to get items by userId
    // https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products/pseudo.pseudoId
-  
+  console.log("INVENTORY URL : ",inventoryEndpoint)
     axios.get(inventoryEndpoint+'/products/pseudo/'+ pseudo.pseudoId)
    .then(response => {
 

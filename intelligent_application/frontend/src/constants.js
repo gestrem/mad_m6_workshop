@@ -1,5 +1,5 @@
 const env = require("env-var");
-const INVENTORY_URL =env
+const INVENTORY_URL = env
   .get("INVENTORY_URL")
   .default("http://inventory:8080")
   .asString();
