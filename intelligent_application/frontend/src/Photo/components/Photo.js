@@ -265,10 +265,14 @@ useEffect(() => {
 
   function renderCamera() {
     
-    const displayResult = pseudoDefined ? {} : { display: "none" };
     if (!cameraEnabled || image) {
+      console.log("CAMERA DISABLED", cameraEnabled)
+      console.log("IMAGE SET ? ",image)
       return null;
     }
+
+    const displayResult = pseudoDefined ? {} : { display: "none" };
+
     //after prediction returned
     // display the sellingLayout
     return (
@@ -985,6 +989,7 @@ a ajouter au apres snapshot
      setshopWindow(false)
      setItemToSell([])
      setImage(null)
+     cameraEnabled(false)
      setInventoryImage("https://www.sifisa.fr/images/0093900001574926432.jpg")
      setCatalog(true)
      
