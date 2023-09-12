@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback, } from "react";
 import { connect } from "react-redux";
 //import { Button } from "@mui/material";
 import axios from "axios";
+import constants from "../../../../utils/constants";
 import { resetSearch, searchPhoto } from "../actions";
 import {
   Form,
@@ -79,6 +80,8 @@ function Photo({
   labelSettings,
   status,
 }) {
+  const inventoryEndpoint = constants.INVENTORY_URL
+
   const [image, setImage] = useState(null);
   const [catalog, setCatalog] = useState(false)
   const [productPrediction, setProductPrediction] = useState([])
@@ -419,7 +422,7 @@ useEffect(() => {
   const handlePseudoCreation = (_event) => {
 
     
-      axios.post('https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/pseudos', 
+      axios.post(inventoryEndpoint+'/pseudos', 
       {"pseudoName" : pseudo.pseudoName}
     ,{headers:
       {'Content-Type': 'application/json'}
@@ -696,7 +699,7 @@ const sendToInventory = (index) => {
   delete payload["index"];
   console.log("SEND TO INVENTORY ",payload)
 
-  axios.post('https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products', 
+  axios.post(inventoryEndpoint+'/products', 
     payload
   ,{headers:
     {'Content-Type': 'application/json'}
@@ -704,7 +707,7 @@ const sendToInventory = (index) => {
   .then((response) => {
     removeItemEdited(index)
   
-    getCatalog()
+      getCatalog()
     console.log("POST 2 ",response);
   }, (error) => {
     console.log("POST ",error);
@@ -760,7 +763,9 @@ const sendToInventory = (index) => {
         ]
 
         console.log("ITEM TO SELL ",itemToSell)
-        
+
+       // var predictedLabel = "Item Category Predicted by AI is "+{clothe.category}"
+
         
      
         return(
@@ -774,7 +779,7 @@ const sendToInventory = (index) => {
           <CardBody>
   
         <Form>
-        <FormGroup label="Item Category Predicted by AI is {clothe.category}">
+        <FormGroup label="">
         <FormSelect 
           id="category"
           aria-label="FormSelect Input"
@@ -916,42 +921,6 @@ a ajouter au apres snapshot
   
   
 
-  function GetObjectPrediction(){
-  
-   
-    axios.get(`https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products`)
-
-   .then(response => {
-
-    let items = response?.data;
-
-     setClothes(items)
-     setImage(true)
-     setCatalog(false)
-     setQRCodeUrl(false)
-     setProductPrediction(true)
-
-
-
-   /* return(
-      <div>
-      {clothes['entries'].map((obj, i) => {
-        return (
-          <div key={i}>
-            <p>{obj?.API}</p>
-          </div>
-        );
-      })}
-    </div>
-  );
-    */
-   
-  })
-  .catch(error=>{
-    console.error("error api",error)
-  })
-
-}
 
 
   function getCatalog(){
@@ -959,7 +928,7 @@ a ajouter au apres snapshot
     // route to update to get items by userId
    // https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products/pseudo.pseudoId
   
-    axios.get(`https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com/products/pseudo/`+ pseudo.pseudoId)
+    axios.get(inventoryEndpoint+'/products/pseudo/'+ pseudo.pseudoId)
    .then(response => {
 
     let items = response?.data;
