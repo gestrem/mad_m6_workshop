@@ -600,7 +600,8 @@ const toClotheObject = (products,predicted_image_url) =>{
         "quantity": 1,
         "pseudoId":"",
         "category":"",
-        "numero":null
+        "numero":null,
+        "confident":null
     }
 
    /*  const clothObj =
@@ -613,6 +614,9 @@ const toClotheObject = (products,predicted_image_url) =>{
       image_url:""
     } */
     // set price to 0 when it is predicted
+    if (o.score!= null){
+      clothObj.confident=Math.floor(o.score * 100)
+    }
 
     if (o.price!= null){
       clothObj.price=o.price
@@ -700,6 +704,7 @@ const sendToInventory = (index) => {
   // for test purpose , image is forced
  // payload.link= "https://www.teez.in/cdn/shop/products/Red-Hat-T-Shirt-2_fa4655dc-8606-4d52-be50-787f19bd4310_large.jpg?v=1580794873"
   delete payload["index"];
+  delete payload["confident"]
   console.log("SEND TO INVENTORY ",payload)
 
   axios.post(INVENTORY_URL+'/products', 
@@ -767,8 +772,7 @@ const sendToInventory = (index) => {
 
         console.log("ITEM TO SELL ",itemToSell)
 
-       // var predictedLabel = "Item Category Predicted by AI is "+{clothe.category}"
-
+       
         
      
         return(
@@ -782,7 +786,7 @@ const sendToInventory = (index) => {
           <CardBody>
   
         <Form>
-        <FormGroup label="">
+        <FormGroup label={"AI model predicted this category : " +clothe.category + " with "+ clothe.confident +"% confidence"}>
         <FormSelect 
           id="category"
           aria-label="FormSelect Input"
