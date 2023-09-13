@@ -288,7 +288,6 @@ useEffect(() => {
     return (
 
       <div className="camera" style={displayResult}>
-        <Title headingLevel="h2" >Take a picture of items you want to sell/give !</Title>
         <div className="img-preview">
           <div className="img-container">
             <video
@@ -772,7 +771,7 @@ const sendToInventory = (index) => {
 
         console.log("ITEM TO SELL ",itemToSell)
 
-       
+    
         
      
         return(
@@ -786,7 +785,7 @@ const sendToInventory = (index) => {
           <CardBody>
   
         <Form>
-        <FormGroup label={"AI model predicted this category : " +clothe.category + " with "+ clothe.confident +"% confidence"}>
+        <FormGroup  label={"AI model predicted this category : " +<div font-style="italic">clothe.category</div> + " with "+ clothe.confident +"% confidence"}>
         <FormSelect 
           id="category"
           aria-label="FormSelect Input"
