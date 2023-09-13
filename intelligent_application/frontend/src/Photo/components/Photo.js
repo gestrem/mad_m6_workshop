@@ -276,8 +276,7 @@ useEffect(() => {
   function renderCamera() {
     
     if (!cameraEnabled || image) {
-      console.log("CAMERA DISABLED", cameraEnabled)
-      console.log("IMAGE SET ? ",image)
+
       return null;
     }
 
@@ -546,7 +545,7 @@ useEffect(() => {
       }
 
       setInventoryImage(clothes[index].link)
-      console.log(" dataset raw ",dataset1["detections"])
+  
 
 console.log("Clothes To Edit ", clothes)
   
@@ -650,39 +649,14 @@ const toClotheObject = (products,predicted_image_url) =>{
 
 
 
-/* const  removeItemEdited = (index)=> {
 
-  console.log("CALL RM ITEM")
-  console.log(" ITEM TO SELL RM ", itemToSell)
-  console.log("item ")
-  
-return(
- setItemToSell((current) =>
-    current.filter((itemToSell) => itemToSell.numero !== index)
-  ))
-} */
 
 const  removeItemEdited = useCallback((index) => setItemToSell((current) =>
 current.filter((itemToSell) => itemToSell.numero !== index)
 ), []);
 
 
-/* const removeItemEdited = (index) => {
-  return() =>{
-    console.log("CALL RM ITEM")
-    setItemToSell((current)=> current.filter((itemToSell)=> itemToSell[index]))
-    // check itemSell size to render catalog
-    if (itemToSell.length === 0){
-      console.log("All items predicted sold" )
-      getCatalog()
-      setCatalog(true)
-      setshopWindow(false)
-      
-    }
 
-    console.log(" REMOVE SOLD ITEM ", itemToSell)
-  }
-} */
 
 const sendToInventory = (index) => {
   return() =>{
@@ -785,7 +759,7 @@ const sendToInventory = (index) => {
           <CardBody>
   
         <Form>
-        <FormGroup  label={"AI model predicted this category : " +<div font-style="italic">clothe.category</div> + " with "+ clothe.confident +"% confidence"}>
+        <FormGroup  label={"AI model predicted this category : " + clothe.category +" with "+clothe.confident +"% confidence. Change it if not accurate"}>
         <FormSelect 
           id="category"
           aria-label="FormSelect Input"
