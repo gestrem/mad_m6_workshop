@@ -105,7 +105,7 @@ function Photo({
   const [itemToEdit,setItemToEdit] = useState([])
   const [pseudoUnicityError,setPseusoUnicityError] = useState(false)
 
-  const INVENTORY_URL = "https://inventory-thegoodcorner-dev.apps.summitconnect.sandbox2218.opentlc.com"
+  const INVENTORY_URL = "https://inventory-thegoodcorner-summit.apps.summitconnect.sandbox2218.opentlc.com"
 
 useEffect(() => {
   // check if pseudo Defined
@@ -776,12 +776,12 @@ const sendToInventory = (index) => {
         </FormSelect>
         </FormGroup>
         <FormGroup
-          label="Name" isRequired fieldId="simple-form-name-01" >
-          <TextInput isRequired type="text" onChange={e => handleSellItem(e.target.value,index,"name")} value={clothe.name} id="simple-form-name-02" name="itemName" aria-describedby="simple-form-name-01-helper"/>
+          label="Name" fieldId="simple-form-name-01" >
+          <TextInput type="text" onChange={e => handleSellItem(e.target.value,index,"name")} value={clothe.name} id="simple-form-name-02" name="itemName" aria-describedby="simple-form-name-01-helper"/>
         </FormGroup>
         <FormGroup
-          label="Description" isRequired fieldId="simple-form-name-02" >
-          <TextInput isRequired type="text" onChange={e => handleSellItem(e.target.value,index,"description")} value={clothe.description} id="simple-form-name-03" name="descriptipn" aria-describedby="simple-form-name-01-helper"/>
+          label="Color" fieldId="simple-form-name-02" >
+          <TextInput type="text" onChange={e => handleSellItem(e.target.value,index,"description")} value={clothe.description} id="simple-form-name-03" name="descriptipn" aria-describedby="simple-form-name-01-helper"/>
         </FormGroup>
         <FormGroup label="Quantity to sell">
            <FormSelect 
